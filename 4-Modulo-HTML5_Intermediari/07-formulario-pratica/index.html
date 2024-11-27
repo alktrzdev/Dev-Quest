@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Formulário</title>
+  </head>
+  <body>
+    <h1>Formulários</h1>
+
+    <h3>Formulário com GET</h3>
+    <form method="get" action="index.html">
+      <input type="text" name="q" id="" value="" />
+      <input type="submit" value="Enviar" />
+    </form>
+
+    <h3>Formulário com POST</h3>
+    <form method="post" action="index.html">
+      <input type="text" name="q" id="" value="" />
+      <input type="submit" value="Enviar" />
+    </form>
+
+    <h3>Formulário Login Facebook</h3>
+    <h1 class="texto-cadastre-se">Cadastre-se</h1>
+    <p class="facil-rapido">É rápido e fácil</p>
+    <form method="get" action="index.html">
+      <input
+        type="text"
+        class="nome"
+        name="nome"
+        id="nome"
+        value=""
+        placeholder="Nome"
+      />
+
+      <input
+        type="text"
+        class="sobrenome"
+        name="sobrenome"
+        id="sobrenome"
+        value=""
+        placeholder="Sobrenome"
+      /><br />
+
+      <input
+        type="text"
+        class="celular-ou-email"
+        name="celular-ou-email"
+        id="celular-ou-email"
+        value=""
+        placeholder="Celular ou email"
+      /><br />
+
+      <input
+        type="password"
+        class="password"
+        name="senha"
+        id="senha"
+        placeholder="Nova Senha"
+      />
+      <br />
+      <br />
+      <label class="data-nascimento">Data de Nascimento</label><br />
+      <select class="select" name="dia" id="">
+        <option value="1">1</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <select class="select" name="mes" id="">
+        <option value="Jan">Jan</option>
+        <option value="Fev">Fev</option>
+        <option value="Mar">Mar</option>
+        <option value="Abr">Abr</option>
+        <option value="Mai">Mai</option>
+      </select>
+      <select class="select" name="Ano" id="">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2003">2003</option>
+        <option value="2004">2004</option>
+      </select>
+      <br />
+      <br />
+      <label class="texto-genero">Gênero</label><br />
+
+      <span class="genero-span">
+        <label class="genero-radio" for="masculino">Masculino</label>
+        <input type="radio" id="masculino" name="genero" value="masculino" />
+      </span>
+      
+      <span class="genero-span">
+        <label class="genero-radio" for="feminino">Feminino</label>
+        <input type="radio" id="feminino" name="genero" value="feminino" />
+      </span>
+       
+      <span class="genero-span">
+        <label class="genero-radio" for="outro">Outro</label>
+        <input type="radio" id="outro" name="genero" value="outro" /> <br />
+      </span>
+
+      <p class="info-final-1">
+        Pessoas que usam nosso serviço podem ter carregado suas informações de
+        contato no Facebook.
+        <a href="https://www.facebook.com/help/637205020878504">Saiba mais</a>.
+      </p>
+      <p class="info-final-1">
+        Ao clicar em Inscrever-se, você concorda com nosso<a
+          href="https://www.facebook.com/legal/terms/update"
+          >Termos</a>,
+        <a
+          href="https://www.facebook.com/privacy/policy/?entry_point=data_policy_redirect&entry=0"
+          >Política de Privacidade</a
+        >e
+        <a
+          href="https://www.facebook.com/privacy/policies/cookies/?entry_point=cookie_policy_redirect&entry=0"
+        >
+          Política de Cookies</a
+        >. Você pode receber notificações por SMS de nós e pode cancelar a
+        qualquer momento..
+      </p>
+      <input class="botao-enviar-cadastro" type="submit" value="Cadastre-se" />
+    </form>
+  </body>
+</html>
+<!--comando de validacao required v -->

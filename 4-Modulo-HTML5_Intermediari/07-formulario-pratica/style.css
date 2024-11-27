@@ -1,0 +1,124 @@
+.celular-ou-email {
+width: 362px;
+margin: 1px;
+border: 1px solid #ccd0d5;
+border-color: #ccd0d5;
+background-color: #f5f6f7;
+padding: 8px;
+border-radius: 4px;
+}
+
+.nome{
+margin: 1px;
+border: 1px solid #ccd0d5;
+border-color: #ccd0d5;
+background-color: #f5f6f7;
+padding: 8px;
+border-radius: 4px;
+}
+
+.sobrenome {
+margin: 1px;
+border: 1px solid #ccd0d5;
+border-color: #ccd0d5;
+background-color: #f5f6f7;
+padding: 8px;
+border-radius: 4px;
+}
+.password {
+width: 362px;
+margin: 1px;
+border: 1px solid #ccd0d5;
+border-color: #ccd0d5;
+background-color: #f5f6f7;
+padding: 8px;
+border-radius: 4px;
+}
+
+.botao-enviar-cadastro{
+  background: none;
+  background-color: #00a400;
+  border: none;
+  border-radius: 6px;
+  box-shadow: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  height: 36px;
+  overflow: hidden;
+  padding: 0 32px;
+  text-shadow: none;
+
+}
+.facil-rapido{
+margin-top: 0px;
+color: #606770;
+font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
+font-size: 15px;
+
+}
+.texto-cadastre-se{
+  color: #1c1e21;
+  font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  line-height: 38px;
+  margin-bottom: 0;
+}
+.data-nascimento{
+  color: #606770;
+  font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+
+.texto-genero{
+  color: #606770;
+  font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 0px;
+  margin-top: 2px;
+}
+.select{
+  border: 1px solid #ccd0d5;
+  width: 124px;
+  font-size: 13px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 4px;
+  color: #1c1e21;
+  font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  height: 36px;
+  line-height: 20px;
+}
+.genero-span{
+  background-color: #fff;
+  border: 1px solid #ccd0d5;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: normal;
+  height: 36px;
+  margin: 0px 0px 6px;
+  padding: 0;
+  width: 124px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  text-align: left;
+  border-radius: 4px;
+  border-width: 1px;
+  display: inline-block;
+  padding: 5px 0 5px 4px;
+}
+
+.info-final-1{
+  font-family: inherit;
+  color: #777;
+  font-size: 11px;
+}
