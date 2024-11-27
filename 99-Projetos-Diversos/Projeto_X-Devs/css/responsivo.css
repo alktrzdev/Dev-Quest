@@ -1,0 +1,21 @@
+ /* O responsivel serve para deixar o site com o formato bom para todos os disposiveis, seja celular, computador, tablet etc.
+isso é extremamente importante*/
+
+@media(max-width:620px ) {
+  .cabecalho {
+     padding: 30px 0;/* Espaçamento do cabeçalho de 30 encima e enbaixo, 0 do lado esquerdo e do lado direito. */
+    }   
+    .personagens-slider {
+      padding: 0 15px;
+      gap: 10px;
+    }
+    .btn-seta{
+      width: 20px;
+      height: 20px;
+      padding: 20px;
+    }
+
+    .lista-personagens{
+      height: 480px;
+    }
+  }
