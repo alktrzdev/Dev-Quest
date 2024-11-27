@@ -1,0 +1,22 @@
+body{
+  background-color:hsl(185, 75%, 39%);
+  color: hsl(227, 10%, 46%);
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.cartao-principal{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 483px;
+  align-items: center;
+}
+.cartao-imagem{
+  background-color: red;
+}
+.foto-perfil{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+   /* Mantém a proporção da imagem sem distorções */
+}

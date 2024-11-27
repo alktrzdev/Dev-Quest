@@ -1,0 +1,19 @@
+p {
+  /*margin: 30px 15px 30px 15px; colocando o mesmo valor no topo e baixo em 30 e lado direito e esquerdo 15*/  
+  margin: 30px 15px;
+  padding: 20px;
+  background-color: aquamarine;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red;
+
+  /* border: 20px solid red; versão mais curta da versão de acima. e será a mais usada nos casos que vamos aprender */
+}
+
+h1{
+  border-style: solid;
+  border-width: 20px;
+  border-color: blue gray red green;
+  /* border-top-color: blue;
+  border-bottom-color: blue; */
+}

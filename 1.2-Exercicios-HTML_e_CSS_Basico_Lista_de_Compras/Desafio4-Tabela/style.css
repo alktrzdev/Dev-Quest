@@ -1,0 +1,24 @@
+table{
+  border: 1px solid none;
+  
+}
+.moda {
+  background-color: #bb86fc;
+  color: white;
+}
+.casa {
+  background-color: #00C4B4;
+  color: white;
+  
+}
+
+.produtos-moda{
+  background-color:  #424250;
+  color:white;
+}
+th{
+  padding: 10px;
+}
+td {
+  padding: 10px;
+}

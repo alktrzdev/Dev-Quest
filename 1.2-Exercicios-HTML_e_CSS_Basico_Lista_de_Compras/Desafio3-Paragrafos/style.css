@@ -1,0 +1,12 @@
+.texto {
+  margin: 40px; /* Espaçamento entre paragrafos*/
+  padding: 20px; /* Espaçamento Interno entre os paragrafos*/
+}
+
+.paragrafo-padrao {
+  background-color: #f5f5f5;
+}
+
+.paragrafo-destacado {
+  background-color: #f0cce2;
+}

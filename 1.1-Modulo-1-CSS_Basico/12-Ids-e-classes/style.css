@@ -1,0 +1,11 @@
+.descricao-produto {
+  background-color: orange;
+  color: blue;
+}
+
+.promocao {
+  border: solid 10px green; /* LEMBRAR SEMPRE DE INFORMAR O TIPO DA BORDA NESSE CASO A BORDA E TO TIPO SOLIDA! */
+}
+/* #descricao-pc {
+  background-color: orange;
+} */

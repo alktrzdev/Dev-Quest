@@ -1,0 +1,78 @@
+body{
+  font-family: "Public Sans", sans-serif;
+  font-weight: 400;
+}
+
+header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 47px;
+  margin-bottom: 100px;
+}
+
+.logo h1{
+  font-size: 40px;
+  font-weight: 800;
+}
+.menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.menu a{
+  font-size: 40px;
+  font-weight: 400;
+  padding: 17px 38px;
+}
+.menu a:hover{
+  color: #FFFFFF;
+  background-color: #5cc242;
+}
+
+.menu .cadastrar {
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #FFFFFF;
+  background-color: #5cc242;
+  border-radius: 8px;
+
+}
+/* @media(max-width: 650px){
+  .header{
+    flex-direction: column;
+  }
+  .logo{
+    font-size: 4rem;
+  }
+  .menu{
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .menu li{
+    padding: 33px 0;
+  }
+  .menu li:last-child {
+      margin-top: 10px;
+  }
+  .menu li a{
+    font-size: 3rem;
+    padding: 17px 40px;
+  }
+  .menu li a.btn{
+    font-size: 1.8rem;
+    padding: 15px 23px;
+    
+  }
+} */

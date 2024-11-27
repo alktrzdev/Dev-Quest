@@ -1,0 +1,12 @@
+body{
+  margin: 0;
+  width: 300px;
+}
+.primeiroelemento{
+  width: 100vw;
+  background-color: aqua;
+}
+.segundoelemento{
+  width: 100%;
+background-color: brown;
+}

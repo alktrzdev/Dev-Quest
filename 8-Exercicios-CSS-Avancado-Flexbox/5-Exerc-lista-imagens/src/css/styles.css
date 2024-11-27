@@ -1,0 +1,32 @@
+html {
+  font-family: "Public Sans", system-ui;
+}
+main{
+  display: flex;
+  background-color: aqua;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.pinturas {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pinturas .pintura {
+  width: 335px;
+  height: 432px;
+  position: relative;
+} 
+.pinturas .pintura .informacoes {
+  position: absolute;
+  color: #FFFFFF;
+  bottom: 40px;
+  left: 20px;
+
+} 
+.pinturas .pintura .informacoes .titulo {
+font-size: 30px;
+margin-bottom: 8px;
+}

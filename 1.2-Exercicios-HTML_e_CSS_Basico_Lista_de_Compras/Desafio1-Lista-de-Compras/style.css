@@ -1,0 +1,29 @@
+.frutas {
+  display: flex;
+  align-items: center;
+}
+
+.frutas img {
+  margin-left: 10px;
+  height: 50px;
+}
+
+h1 {
+  background-color: greenyellow;
+}
+
+.maca{
+  width: 50px;
+  height: 50px;
+  
+}
+.pera {
+  width: 50px;
+  height: 50px;
+}
+
+.banana {
+  width: 50px;
+  height: 50px;
+  
+}

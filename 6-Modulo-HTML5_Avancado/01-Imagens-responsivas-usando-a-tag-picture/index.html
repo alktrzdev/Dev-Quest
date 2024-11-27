@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagens responsivas usando a taga picture</title>
+</head>
+<body>
+  <h1>Picture com mobile first</h1>
+  <picture>
+    <source media="(max-width:375px)" srcset="https://via.placeholder.com/250X250">
+    <source media="(max-width:425px)" srcset="https://via.placeholder.com/350X350">
+    <source media="(min-width:768px)" srcset="https://via.placeholder.com/500X500">
+    <img src="https://via.placeholder.com/800x800" alt="Flowers" style="width:auto;">
+  </picture>
+</body>
+</html>
