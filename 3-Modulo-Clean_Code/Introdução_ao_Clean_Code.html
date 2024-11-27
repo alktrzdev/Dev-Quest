@@ -1,0 +1,704 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Clean code básico - Introdução ao Clean Code</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9db0e5ff-b730-4fba-9721-0a0512bd62f6" class="page sans"><header><img class="page-cover-image" src="https://hermes.dio.me/articles/cover/24512b8b-49b0-44d3-b7b9-684220a20453.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🧹</span></div><h1 class="page-title"><strong>Clean code básico - Introdução ao Clean Code</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="f514e528-c72b-4fbd-a1d6-eab20017f7d0" class="">
+</p><figure id="d9cf3112-9a0d-4da2-a627-dbee05c70f61" class="image"><a href="Untitled.png"><img style="width:707.94921875px" src="Untitled.png"/></a></figure><p id="ea26fea1-4ed6-463c-b4fc-f3176f27e5a3" class="">O conceito de &quot;Clean Code&quot; ganhou notoriedade principalmente através do trabalho de Robert C. Martin, também conhecido como &quot;Uncle Bob&quot;. Ele é um veterano na indústria de software e tem sido uma figura influente na comunidade de desenvolvimento de software, especialmente em relação às práticas de codificação limpa e desenvolvimento ágil.</p><h3 id="942b7518-9f3e-457f-a027-5989fa7ca352" class="">Origens e Contexto</h3><ol type="1" id="af0f87cd-f3de-46d2-a049-abb6ade6299c" class="numbered-list" start="1"><li><strong>Antes de &quot;Clean Code&quot;</strong>:<ul id="73e52e5f-b75b-4be3-9b46-024f77f54a31" class="bulleted-list"><li style="list-style-type:disc">Nos primeiros dias da programação, as práticas de codificação variavam amplamente. À medida que a complexidade dos sistemas aumentava, ficou evidente que a manutenção e a legibilidade do código eram aspectos críticos para o sucesso a longo prazo.</li></ul><ul id="96944319-062e-4c48-9877-4fc4ba679874" class="bulleted-list"><li style="list-style-type:disc">Na década de 1970, práticas como a programação estruturada começaram a ganhar força, enfatizando a necessidade de escrever código claro e compreensível. Edsger Dijkstra e outros pioneiros da computação promoveram a ideia de que o código deve ser legível e fácil de entender.</li></ul></li></ol><ol type="1" id="d509af66-d28e-4d07-b33b-314e2ced4d86" class="numbered-list" start="2"><li><strong>Movimento Ágil</strong>:<ul id="cbe889b9-8406-4061-8de3-1e6fe5fc0c5f" class="bulleted-list"><li style="list-style-type:disc">Na década de 1990, o Manifesto Ágil foi criado por um grupo de desenvolvedores de software, incluindo Robert C. Martin. O desenvolvimento ágil enfatiza a colaboração, flexibilidade e a entrega de software funcional de forma incremental.</li></ul><ul id="570c5239-9786-4299-8be8-4250cbbafbcb" class="bulleted-list"><li style="list-style-type:disc">Um dos princípios do Agile é a &quot;entrega contínua de software de valor&quot;, que se alinha bem com a ideia de manter o código limpo para facilitar mudanças rápidas e eficazes.</li></ul></li></ol><h3 id="172865c5-dc14-4899-9656-094ca0fde422" class="">Robert C. Martin e Clean Code</h3><ol type="1" id="f529cba5-66a9-4ae0-b408-5116290c5536" class="numbered-list" start="1"><li><strong>Publicação do Livro &quot;Clean Code&quot;</strong>:<ul id="22bf131f-22a2-40fc-9dfc-2de7883f9243" class="bulleted-list"><li style="list-style-type:disc">Em 2008, Robert C. Martin publicou o livro &quot;Clean Code: A Handbook of Agile Software Craftsmanship&quot;. Este livro se tornou um marco no desenvolvimento de software, fornecendo diretrizes práticas para escrever código legível, mantível e eficiente.</li></ul><ul id="7d0cc06b-5aeb-46d4-a650-0fa046ef4365" class="bulleted-list"><li style="list-style-type:disc">O livro é uma combinação de princípios teóricos e exemplos práticos, abordando tópicos como nomes significativos, funções pequenas e bem definidas, tratamento de erros, e a importância de testes.</li></ul></li></ol><ol type="1" id="3fd8280e-3706-4c4d-b1c4-9eba45702a1c" class="numbered-list" start="2"><li><strong>Princípios Fundamentais</strong>:<ul id="fbf45730-dd10-4353-acfd-2d8cc7330c15" class="bulleted-list"><li style="list-style-type:disc">Martin delineou vários princípios fundamentais de código limpo, como a importância de manter o código simples, evitar duplicação, e escrever testes automatizados.</li></ul><ul id="f40865c5-e5fb-4793-a74e-5a1feb1bf8ce" class="bulleted-list"><li style="list-style-type:disc">Ele também introduziu o conceito de &quot;Boy Scout Rule&quot;, que sugere que os desenvolvedores devem sempre deixar o código em melhor estado do que o encontraram.</li></ul></li></ol><h3 id="b1dafe2a-3847-4ba4-a0ca-bb3a6a53661c" class="">Impacto e Legado</h3><ol type="1" id="7033499c-9237-4dc7-bec8-cc0c0340cebe" class="numbered-list" start="1"><li><strong>Comunidade de Desenvolvimento de Software</strong>:<ul id="4ac3d65b-b412-4024-85db-d2a5bf075fba" class="bulleted-list"><li style="list-style-type:disc">O conceito de Clean Code influenciou significativamente a comunidade de desenvolvimento de software. Muitas equipes e organizações adotaram as práticas descritas por Martin para melhorar a qualidade do seu código.</li></ul><ul id="ce18f6aa-00aa-4fd2-ae88-5ac5d98999c3" class="bulleted-list"><li style="list-style-type:disc">A prática de revisão de código (code review) e a adoção de padrões de codificação são, em parte, resultados da influência do movimento Clean Code.</li></ul></li></ol><ol type="1" id="b9f8ebd1-de24-495a-9ff0-4e5763cc7774" class="numbered-list" start="2"><li><strong>Educação e Formação</strong>:<ul id="6f6c3344-44a9-41e7-aa9e-eb84331842a1" class="bulleted-list"><li style="list-style-type:disc">Muitas instituições de ensino e cursos de desenvolvimento de software agora incluem princípios de Clean Code em seus currículos.</li></ul><ul id="99271764-bfca-428e-82b2-d415c61a2885" class="bulleted-list"><li style="list-style-type:disc">Programas de treinamento e certificações focadas em Clean Code e práticas ágeis também se tornaram populares.</li></ul></li></ol><p id="34c07225-9c74-486a-a303-5cc6a2055735" class="">Em resumo, o conceito de Clean Code evoluiu a partir de uma necessidade crescente de melhorar a legibilidade e a manutenção do código à medida que os sistemas de software se tornavam mais complexos. Robert C. Martin desempenhou um papel crucial na formalização e disseminação dessas práticas, influenciando gerações de desenvolvedores a escreverem código mais limpo e sustentável.</p><p id="1eabea51-a0ca-4f5f-89c9-85336197a5d7" class="">
+</p><blockquote id="3c5d891a-140b-40b2-834d-67b1a05a128c" class=""><em><mark class="highlight-yellow"><strong>“RESUMINDO É CRIAR UM SOFTWARE DE QUALIDADE QUE FAVOREÇA O CRESCIMENTO DO PRODUTO, AO INVÉS DE SER UM PESO PRO CRESCIMENTO DE UM NEGÓCIO”</strong></mark></em></blockquote><p id="dd5f3701-e309-4c88-9123-f0be9f56ab2a" class="">
+</p><figure id="49920472-32f5-452d-84de-605f1099e767" class="image"><a href="Untitled%201.png"><img style="width:699.94140625px" src="Untitled%201.png"/></a></figure><p id="c7da1960-fb6c-401d-8a81-cde951cb95e3" class="">
+</p><figure id="9e460419-bf2d-4127-9bf5-9e12c2f2e3aa" class="image"><a href="Untitled%202.png"><img style="width:695px" src="Untitled%202.png"/></a></figure><p id="3d27226f-8bea-4989-877b-a8272547f499" class=""><div class="indented"><p id="da1ee463-901e-4a1b-878a-50b291f19d70" class=""><em><mark class="highlight-red"><strong>                                                                  MENSAGEM IMPORTANTE</strong></mark></em></p></div></p><figure id="f5056400-3efa-492c-9c67-c4d58a54698d" class="image" style="text-align:center"><a href="Untitled%203.png"><img style="width:506.9921875px" src="Untitled%203.png"/></a></figure><p id="87341825-68ac-4693-af02-ed86daab44d0" class="">
+</p><p id="b4a9e212-f72a-44f9-9484-0bc2be19b6fc" class="">
+</p><figure id="c46eaf79-f7e6-4c97-89da-539aaac07fe7" class="image"><a href="Untitled%204.png"><img style="width:707.96875px" src="Untitled%204.png"/></a></figure><h2 id="2db3ff01-f751-4d09-8f00-489a4b6b118f" class=""><em><mark class="highlight-red"><strong>                                                          Não!</strong></mark></em></h2><figure id="9c0dad9b-ce79-4f17-9d6f-5f152da0947f" class="image"><a href="Untitled%205.png"><img style="width:701.93359375px" src="Untitled%205.png"/></a></figure><h1 id="249fe179-9455-4ce3-bfa5-cf51007107cb" class=""><strong>Clean code básico - A regra do escoteiro:</strong></h1><figure id="d388f966-f048-4f79-b72b-57cd6e2aabfd" class="image"><a href="Untitled%206.png"><img style="width:707.96875px" src="Untitled%206.png"/></a></figure><p id="6250c332-6699-4add-b364-c190346adff6" class="">Lembra ALT + SHIFT + F : comando de indentar os códigos dentro do vscode mais organizados e no padrão (Estrutura)</p><p id="da789686-ee66-4f6b-ab66-5ce0d78767c9" class="">
+</p><figure id="35ccc9c3-d0c4-44e2-91c7-be34510ca83f" class="image"><a href="Untitled%207.png"><img style="width:707.98828125px" src="Untitled%207.png"/></a></figure><p id="d5f97c30-7604-4ba2-a94f-5f0b813c45c3" class="">
+</p><figure id="b7023088-3f01-459f-b54a-7b82dacd364b" class="image"><a href="Untitled%208.png"><img style="width:707.98828125px" src="Untitled%208.png"/></a></figure><p id="c6c316f2-a9f3-4797-baa7-cbe23a971a86" class="">
+</p><h1 id="499baf06-60a2-4174-ac13-dbcb664653d7" class="block-color-red"><strong>Clean code básico - Nomes são importantes</strong></h1><figure id="01dd5b1b-5917-454d-aa6f-6529d23db627" class="image"><a href="Untitled%209.png"><img style="width:707.98828125px" src="Untitled%209.png"/></a></figure><p id="228e77d9-0542-4c7f-ba4c-577a0f42094e" class="">
+</p><figure id="bd5b7871-f280-4599-b1f7-261f7b59f46e" class="image"><a href="Untitled%2010.png"><img style="width:707.94921875px" src="Untitled%2010.png"/></a></figure><p id="c8e9dd88-5375-48dd-b12e-837717595fef" class="">
+</p><figure id="88665fcc-3893-45c1-ba0e-90f77764eca3" class="image"><a href="Untitled%2011.png"><img style="width:707.94921875px" src="Untitled%2011.png"/></a></figure><p id="85c44277-0a5f-413e-8b56-32bbb5e90613" class="">
+</p><p id="45525e20-a17e-4e35-b5bb-2870d5dccfdd" class="">
+</p><h1 id="6ad00f5b-6399-4b86-8d74-3cd6fc7f2c3e" class=""><mark class="highlight-red"><strong>Clean code básico - Desenvolvimento gradual e refatoração</strong></mark></h1><figure id="cfdaabe1-3d0e-47fd-8377-a1aa032b5ec8" class="image"><a href="Untitled%2012.png"><img style="width:720px" src="Untitled%2012.png"/></a></figure><p id="a390db58-fbc6-48f3-9162-ae706ad9c484" class="">
+</p><figure id="05c4655f-e458-4011-85ef-ca27c7178041" class="image"><a href="Untitled%2013.png"><img style="width:707.94921875px" src="Untitled%2013.png"/></a></figure><p id="3cc8c72b-94e7-4234-a71e-21a65d4f1358" class="">
+</p><figure id="d97b28b1-eeb3-4dac-8746-9a39cd84024d" class="image"><a href="Untitled%2014.png"><img style="width:707.94921875px" src="Untitled%2014.png"/></a></figure><p id="12e77093-f892-4f71-aa82-308a9958b1b0" class="">
+</p><figure id="61be7075-019c-4a1b-9422-912a7b27189f" class="image"><a href="Untitled%2015.png"><img style="width:707.94921875px" src="Untitled%2015.png"/></a></figure><p id="4813a313-dd09-4b87-a0bd-a19aa5fbcb4e" class="">
+</p><figure id="e2880c25-cca4-4b44-b71d-f58d3045b1c2" class="image"><a href="Untitled%2016.png"><img style="width:707.98828125px" src="Untitled%2016.png"/></a></figure><h2 id="3b0b52c8-983e-4673-86d9-dbc94961f6a3" class="">Ta funcionando ?</h2><p id="275f39bc-9c31-4311-917f-fabcae7fd996" class="">Vamos tentar refaturar o código sempre se der e claro.</p><p id="ba6cec7d-7ed7-4ff7-b357-f6ad8859d6bc" class="">
+</p><figure id="f84ccb2c-72b9-43d4-82bc-94beac9620e8" class="image"><a href="Untitled%2017.png"><img style="width:707.94921875px" src="Untitled%2017.png"/></a></figure><p id="09b26c2a-3b17-4f38-b299-9e65414f67e2" class="">
+</p><p id="e36e1442-c3b0-4ce5-83a1-06dec7118ed6" class=""><strong>Quiz Clean Code:</strong></p><p id="dc5acf4b-c3c8-409d-b72a-6f4d9e3f425d" class="">
+</p><figure id="e35ab590-da52-4666-ac51-7f271375d910" class="image"><a href="Animao.gif"><img style="width:707.98828125px" src="Animao.gif"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
